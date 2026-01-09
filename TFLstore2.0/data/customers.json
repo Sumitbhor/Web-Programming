@@ -1,0 +1,6 @@
+[
+    {"id":1, "firstname":"sumit","lastname":"bhor", "email":"sumitbhor227@gmail.com", "contactnumber":"9876543210", "city":"pune"},
+    {"id":2, "firstname":"rahul","lastname":"sharma", "email":"rahulsharma@gmail.com", "contactnumber":"9876543211", "city":"mumbai"},
+    {"id":3, "firstname":"anita","lastname":"gupta", "email":"anitagupta@gmail.com", "contactnumber":"9876543212", "city":"delhi"},
+    {"id":4, "firstname":"neha","lastname":"patel", "email":"nehapatel@gmail.com", "contactnumber":"9876543213", "city":"bangalore"}
+]

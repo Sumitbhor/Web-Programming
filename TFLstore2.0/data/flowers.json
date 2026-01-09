@@ -1,0 +1,6 @@
+[
+    {"id":1, "name":"marigold", "description":"wedding flower", "unitprice":12, "quantity": 5000, "likes":45000},
+    {"id":2, "name":"lotus", "description":"national flower of India", "unitprice":20, "quantity": 3000, "likes":35000},
+    {"id":3, "name":"rose", "description":"romantic flower", "unitprice":15, "quantity": 4000, "likes":50000},
+    {"id":4, "name":"jasmine", "description":"fragrant flower", "unitprice":10, "quantity": 6000, "likes":25000}
+]
