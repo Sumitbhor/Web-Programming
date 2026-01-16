@@ -9,10 +9,115 @@
                     background-color:darkmagenta;
                   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-.card-img {
+/* .card-img {
   height: 250px;
   object-fit: contain;
   background-color: #f8f9fa;
   padding: 10px;
+} */
+
+/* Carousel height = 25% of screen height */
+.carousel-item img {
+  height: 100vh;        /* 1/4 of viewport height */
+  object-fit: cover;  /* image fills area without stretching */
+}
+html {
+  scroll-behavior: smooth;
 }
 
+/* ===== Transflower Theme ===== */
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+/* Override Bootstrap colors */
+:root {
+  --bs-primary: #e30b0b;       /* blossom pink */
+  --bs-secondary: #4caf50;     /* leaf green */
+  --bs-warning: #ffeb3b;       /* sunshine yellow */
+}
+
+/* Navbar tweak */
+.navbar {
+  background-color: var(--bs-primary) !important;
+}
+.navbar .nav-link {
+  color: #fff !important;
+  font-weight: 500;
+}
+.navbar .nav-link:hover {
+  color: var(--bs-warning) !important;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+.btn-primary:hover {
+  background-color: #c2185b;
+  border-color: #c2185b;
+}
+
+/* Cards */
+.card {
+  border: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 10px;
+}
+
+/* Footer */
+footer {
+  background-color: var(--bs-secondary);
+}
+.carousel-caption h5,
+.carousel-caption p {
+  background-color: rgba(233, 30, 99, 0.6); /* translucent pink */
+  padding: 10px;
+  border-radius: 8px;
+}
+.card:hover {
+  transform: scale(1.03);
+  transition: 0.3s ease-in-out;
+}
+.btn-outline-primary:hover {
+  background-color: var(--bs-primary);
+  color: #fff;
+  border-color: var(--bs-primary);
+}
+section {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.nav-link.active {
+  color: var(--bs-warning) !important;
+  font-weight: 600;
+}
+form{
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.modal-content {
+  border-radius: 12px;
+}
+.btn-primary {
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  background-color: #c2185b;
+}
+
+.card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
