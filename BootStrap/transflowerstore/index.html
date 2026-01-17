@@ -23,7 +23,8 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarnav">
+            <div class="collapse navbar-collapse" id="navbarNav">
+
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house-door"></i> Home</a>
                     </li>
@@ -75,12 +76,14 @@
             <button class="carousel-control-next" type="button" data-bs-target="#storeCarousel" data-bs-slide="next">
                 <span class="carousel-control-next-icon"></span>
             </button>
+        </div>
     </section>
     <section class="py-5">
         <div class="container">
             <h2 class="text-center mb-4">Our Featured Flowers</h2>
             <div class="row">
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="0">
+
                     <div class="card ">
                         <img src="./image/rose (2).jpg" height="500" class="card-img-top card-img" alt="rose">
                         <div class="card-body text-center">
@@ -93,20 +96,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+
                     <div class="card ">
                         <img src="./image/tulip.jpg" height="500" class="card-img-top card-img" alt="rose">
                         <div class="card-body text-center">
                             <h5 class="card-title">Tulip</h5>
                             <p class="card-text">Fresh tulips to brighten your day.</p>
-                            <!-- <a href="#" class="btn btn-outline-primary">Buy Now</a> -->/
+                            <!-- <a href="#" class="btn btn-outline-primary">Buy Now</a> -->
                             <a href="#" class="btn btn-primary">
                                 <i class="bi bi-cart-plus"></i> Add to Cart
                             </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="400">
+
                     <div class="card ">
                         <img src="./image//sunflower.jpg" height="500" class="card-img-top card-img" alt="flower">
                         <div class="card-body text-center">
@@ -119,6 +124,8 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
     </section>
     <!-- Contact Modal -->
     <section id="contact">
@@ -206,6 +213,13 @@
   `
             alertPlaceholder.append(wrapper)
         }
+    </script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
     </script>
 </body>
 
