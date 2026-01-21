@@ -1,14 +1,17 @@
-.transflower{
-    color: darkred; font-size: xx-large;
-                    background-color: burlywood;
-                  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+.transflower {
+  color: darkred;
+  font-size: xx-large;
+  background-color: burlywood;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-.seed{
-    color: blue; font-size: xx-small;
-                    background-color:darkmagenta;
-                  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+.seed {
+  color: blue;
+  font-size: xx-small;
+  background-color: darkmagenta;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
 /* .card-img {
   height: 250px;
   object-fit: contain;
@@ -18,9 +21,12 @@
 
 /* Carousel height = 25% of screen height */
 .carousel-item img {
-  height: 100vh;        /* 1/4 of viewport height */
-  object-fit: cover;  /* image fills area without stretching */
+  height: 100vh;
+  /* 1/4 of viewport height */
+  object-fit: cover;
+  /* image fills area without stretching */
 }
+
 html {
   scroll-behavior: smooth;
 }
@@ -32,19 +38,24 @@ body {
 
 /* Override Bootstrap colors */
 :root {
-  --bs-primary: #e30b0b;       /* blossom pink */
-  --bs-secondary: #8c8ced;     /* leaf green */
-  --bs-warning: #ffeb3b;       /* sunshine yellow */
+  --bs-primary: #e30b0b;
+  /* blossom pink */
+  --bs-secondary: #8c8ced;
+  /* leaf green */
+  --bs-warning: #ffeb3b;
+  /* sunshine yellow */
 }
 
 /* Navbar tweak */
 .navbar {
   background-color: var(--bs-primary) !important;
 }
+
 .navbar .nav-link {
   color: #fff !important;
   font-weight: 500;
 }
+
 .navbar .nav-link:hover {
   color: var(--bs-warning) !important;
 }
@@ -54,6 +65,7 @@ body {
   background-color: var(--bs-primary);
   border-color: var(--bs-primary);
 }
+
 .btn-primary:hover {
   background-color: #c2185b;
   border-color: #c2185b;
@@ -62,7 +74,7 @@ body {
 /* Cards */
 .card {
   border: none;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
 }
 
@@ -70,21 +82,26 @@ body {
 footer {
   background-color: var(--bs-secondary);
 }
+
 .carousel-caption h5,
 .carousel-caption p {
-  background-color: rgba(233, 30, 99, 0.6); /* translucent pink */
+  background-color: rgba(233, 30, 99, 0.6);
+  /* translucent pink */
   padding: 10px;
   border-radius: 8px;
 }
+
 .card:hover {
   transform: scale(1.03);
   transition: 0.3s ease-in-out;
 }
+
 .btn-outline-primary:hover {
   background-color: var(--bs-primary);
   color: #fff;
   border-color: var(--bs-primary);
 }
+
 section {
   padding-top: 60px;
   padding-bottom: 60px;
@@ -94,16 +111,18 @@ section {
   color: var(--bs-warning) !important;
   font-weight: 600;
 }
-form{
+
+form {
   background-color: #fff;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .modal-content {
   border-radius: 12px;
 }
+
 .btn-primary {
   transition: all 0.3s ease;
 }
@@ -119,16 +138,25 @@ form{
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
+
 .navbar-brand i {
   animation: bloom 2s ease-in-out infinite alternate;
 }
 
 @keyframes bloom {
-  0% { transform: scale(1); color: #fff; }
-  100% { transform: scale(1.2); color: #ffeb3b; }
+  0% {
+    transform: scale(1);
+    color: #fff;
+  }
+
+  100% {
+    transform: scale(1.2);
+    color: #ffeb3b;
+  }
 }
+
 /* Card styling */
 /* .custom-card {
   border: 1px solid #ddd;
@@ -156,19 +184,20 @@ form{
   padding: 10px;
   text-align: center;
 } */
-  
+
 .flower-card {
   border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   background: #fff;
-  height: 100%;
+  height: auto;
 }
 
 /* Image container */
 .img-box {
   width: 100%;
-  height: 250px;          /* same height for all images */
+  height: 400px;
+  /* same height for all images */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -177,12 +206,105 @@ form{
 
 /* Image */
 .img-box img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;   /* no cutting */
+  width: 300px;
+  height: 400px;
+  object-fit: cover;
+  /* no cutting */
 }
 
 /* Card body */
 .flower-card .card-body {
   padding: 20px;
+}
+
+h1 {
+  color: #e91e63;
+  font-weight: bold;
+}
+
+.lead {
+  color: #555;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+h1, h2 {
+  font-weight: bold;
+}
+
+.card img {
+  height: 200px;
+  object-fit: cover;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+.card {
+  border-radius: 15px;
+}
+
+.btn-danger {
+  border-radius: 25px;
+}
+
+.card-header h4 {
+  letter-spacing: 1px;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+h2 {
+  letter-spacing: 1px;
+}
+
+.btn-danger {
+  border-radius: 25px;
+}
+
+footer {
+  font-size: 0.9rem;
+}
+
+#scrollTopBtn {
+    position: fixed;       /* Makes it float */
+    bottom: 20px;          /* Distance from bottom */
+    right: 20px;           /* Distance from right */
+    z-index: 9999;         /* Stay above everything */
+    display: none;        /* Hidden initially */
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+}
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;   /* Push footer to bottom */
+}
+
+
+.tabcard{
+  width: 250px;
+  height: 500px;
+}
+
+
+.tabimg{
+  height: 300px;
+  object-fit: cover;
 }
