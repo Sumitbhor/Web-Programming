@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Vegetable - Sumit Vegetable Company</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <span class="logo-icon">🥬</span>
+                <span class="logo-text">Sumit Vegetables</span>
+            </a>
+            <div class="nav-links">
+                <span class="user-greeting">Hello, <%= user.name %></span>
+                <a href="/shopkeeper/dashboard" class="nav-link">Dashboard</a>
+                <a href="/auth/logout" class="btn btn-secondary">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="dashboard">
+        <div class="form-container">
+            <div class="form-header">
+                <h1 class="form-title">Add New Vegetable</h1>
+                <p class="form-subtitle">Fill in the details below to add a new vegetable to your inventory</p>
+            </div>
+
+            <% if (error) { %>
+                <div class="alert alert-error"><%= error %></div>
+            <% } %>
+
+            <form method="POST" action="/shopkeeper/add-vegetable" enctype="multipart/form-data" class="product-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Vegetable Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="e.g., Tomato">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Category *</label>
+                        <select id="category" name="category" required>
+                            <option value="leafy">Leafy Vegetables</option>
+                            <option value="root">Root Vegetables</option>
+                            <option value="fruit">Fruit Vegetables</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" rows="3" placeholder="Brief description of the vegetable"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="price">Price (₹) *</label>
+                        <input type="number" id="price" name="price" step="0.01" min="0" required placeholder="0.00">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantity">Quantity *</label>
+                        <input type="number" id="quantity" name="quantity" step="0.01" min="0" required placeholder="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="unit">Unit *</label>
+                        <select id="unit" name="unit" required>
+                            <option value="kg">Kilogram (kg)</option>
+                            <option value="g">Gram (g)</option>
+                            <option value="piece">Piece</option>
+                            <option value="bunch">Bunch</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="image">Upload Image</label>
+                    <input type="file" id="image" name="image" accept="image/*">
+                    <p class="form-help">Recommended: Square image, at least 500x500px</p>
+                </div>
+
+                <div class="form-actions">
+                    <a href="/shopkeeper/dashboard" class="btn btn-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Add Vegetable</button>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

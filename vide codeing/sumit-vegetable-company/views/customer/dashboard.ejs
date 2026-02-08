@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard - Sumit Vegetable Company</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <span class="logo-icon">🥬</span>
+                <span class="logo-text">Sumit Vegetables</span>
+            </a>
+            <div class="nav-links">
+                <span class="user-greeting">Hello, <%= user.name %></span>
+                <a href="/customer/dashboard" class="nav-link active">Shop</a>
+                <button class="btn btn-cart" onclick="toggleCart()">
+                    🛒 Cart (<span id="cart-count">0</span>)
+                </button>
+                <a href="/auth/logout" class="btn btn-secondary">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="dashboard">
+        <div class="dashboard-container">
+            <div class="dashboard-header">
+                <div>
+                    <h1 class="dashboard-title">Fresh Vegetables</h1>
+                    <p class="dashboard-subtitle">Choose from our daily fresh collection</p>
+                </div>
+            </div>
+
+            <div class="product-grid">
+                <% if (vegetables.length === 0) { %>
+                    <div class="empty-state-card">
+                        <p>No vegetables available at the moment. Please check back later!</p>
+                    </div>
+                <% } else { %>
+                    <% vegetables.forEach(veg => { %>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="<%= veg.image %>" alt="<%= veg.name %>" onerror="this.src='/uploads/default-vegetable.jpg'">
+                            <% if (veg.quantity < 10) { %>
+                            <span class="badge badge-warning">Low Stock</span>
+                            <% } %>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name"><%= veg.name %></h3>
+                            <p class="product-description"><%= veg.description || 'Fresh and organic' %></p>
+                            <div class="product-footer">
+                                <span class="product-price">₹<%= veg.price %>/<%= veg.unit %></span>
+                                <span class="product-stock"><%= veg.quantity %> <%= veg.unit %> available</span>
+                            </div>
+                            <button class="btn btn-primary btn-full" onclick="addToCart('<%= veg._id %>', '<%= veg.name %>', <%= veg.price %>, '<%= veg.unit %>', <%= veg.quantity %>)">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <% }); %>
+                <% } %>
+            </div>
+
+            <% if (orders.length > 0) { %>
+            <section class="dashboard-section" style="margin-top: 3rem;">
+                <h2 class="section-title">My Orders</h2>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Items</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% orders.forEach(order => { %>
+                            <tr>
+                                <td><strong>#<%= order._id.toString().slice(-6) %></strong></td>
+                                <td><%= order.items.length %> items</td>
+                                <td>₹<%= order.totalAmount %></td>
+                                <td>
+                                    <span class="badge badge-<%= order.status === 'pending' ? 'warning' : order.status === 'confirmed' ? 'info' : order.status === 'delivered' ? 'success' : 'error' %>">
+                                        <%= order.status %>
+                                    </span>
+                                </td>
+                                <td><%= new Date(order.orderDate).toLocaleDateString() %></td>
+                            </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <% } %>
+        </div>
+    </main>
+
+    <!-- Shopping Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="close-btn" onclick="toggleCart()">✕</button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <p class="empty-cart">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">₹0.00</span>
+            </div>
+            <button class="btn btn-primary btn-full" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+
+    <div id="cart-overlay" class="cart-overlay" onclick="toggleCart()"></div>
+
+    <script src="/js/customer.js"></script>
+</body>
+</html>

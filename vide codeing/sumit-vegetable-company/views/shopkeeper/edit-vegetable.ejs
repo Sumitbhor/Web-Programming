@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Vegetable - Sumit Vegetable Company</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <span class="logo-icon">🥬</span>
+                <span class="logo-text">Sumit Vegetables</span>
+            </a>
+            <div class="nav-links">
+                <span class="user-greeting">Hello, <%= user.name %></span>
+                <a href="/shopkeeper/dashboard" class="nav-link">Dashboard</a>
+                <a href="/auth/logout" class="btn btn-secondary">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="dashboard">
+        <div class="form-container">
+            <div class="form-header">
+                <h1 class="form-title">Edit Vegetable</h1>
+                <p class="form-subtitle">Update the details for <%= vegetable.name %></p>
+            </div>
+
+            <% if (error) { %>
+                <div class="alert alert-error"><%= error %></div>
+            <% } %>
+
+            <form method="POST" action="/shopkeeper/edit-vegetable/<%= vegetable._id %>" enctype="multipart/form-data" class="product-form">
+                <div class="current-image">
+                    <label>Current Image</label>
+                    <img src="<%= vegetable.image %>" alt="<%= vegetable.name %>" style="max-width: 200px; border-radius: 8px;" onerror="this.src='/uploads/default-vegetable.jpg'">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Vegetable Name *</label>
+                        <input type="text" id="name" name="name" required value="<%= vegetable.name %>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Category *</label>
+                        <select id="category" name="category" required>
+                            <option value="leafy" <%= vegetable.category === 'leafy' ? 'selected' : '' %>>Leafy Vegetables</option>
+                            <option value="root" <%= vegetable.category === 'root' ? 'selected' : '' %>>Root Vegetables</option>
+                            <option value="fruit" <%= vegetable.category === 'fruit' ? 'selected' : '' %>>Fruit Vegetables</option>
+                            <option value="other" <%= vegetable.category === 'other' ? 'selected' : '' %>>Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" rows="3"><%= vegetable.description || '' %></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="price">Price (₹) *</label>
+                        <input type="number" id="price" name="price" step="0.01" min="0" required value="<%= vegetable.price %>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantity">Quantity *</label>
+                        <input type="number" id="quantity" name="quantity" step="0.01" min="0" required value="<%= vegetable.quantity %>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="unit">Unit *</label>
+                        <select id="unit" name="unit" required>
+                            <option value="kg" <%= vegetable.unit === 'kg' ? 'selected' : '' %>>Kilogram (kg)</option>
+                            <option value="g" <%= vegetable.unit === 'g' ? 'selected' : '' %>>Gram (g)</option>
+                            <option value="piece" <%= vegetable.unit === 'piece' ? 'selected' : '' %>>Piece</option>
+                            <option value="bunch" <%= vegetable.unit === 'bunch' ? 'selected' : '' %>>Bunch</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="image">Upload New Image (Optional)</label>
+                    <input type="file" id="image" name="image" accept="image/*">
+                    <p class="form-help">Leave empty to keep current image</p>
+                </div>
+
+                <div class="form-actions">
+                    <a href="/shopkeeper/dashboard" class="btn btn-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Update Vegetable</button>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sumit Vegetable Company</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-box">
+            <a href="/" class="auth-logo">
+                <span class="logo-icon">🥬</span>
+                <span class="logo-text">Sumit Vegetables</span>
+            </a>
+            <h2 class="auth-title">Welcome Back</h2>
+            <p class="auth-subtitle">Login to access your account</p>
+
+            <% if (error) { %>
+                <div class="alert alert-error"><%= error %></div>
+            <% } %>
+
+            <form method="POST" action="/auth/login" class="auth-form">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Login As</label>
+                    <select id="role" name="role" required>
+                        <option value="">Select Role</option>
+                        <option value="customer">Customer</option>
+                        <option value="shopkeeper">Shopkeeper</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+            </form>
+
+            <p class="auth-footer">
+                Don't have an account? <a href="/auth/register">Register here</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

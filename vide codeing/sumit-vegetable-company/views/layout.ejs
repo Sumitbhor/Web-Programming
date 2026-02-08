@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= typeof title !== 'undefined' ? title : 'Sumit Vegetable Company' %></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <span class="logo-icon">🥬</span>
+                <span class="logo-text">Sumit Vegetables</span>
+            </a>
+            <div class="nav-links">
+                <% if (typeof user !== 'undefined' && user.userId) { %>
+                    <span class="user-greeting">Hello, <%= user.name %></span>
+                    <% if (user.role === 'shopkeeper') { %>
+                        <a href="/shopkeeper/dashboard" class="nav-link">Dashboard</a>
+                    <% } else if (user.role === 'customer') { %>
+                        <a href="/customer/dashboard" class="nav-link">My Account</a>
+                    <% } %>
+                    <a href="/auth/logout" class="btn btn-secondary">Logout</a>
+                <% } else { %>
+                    <a href="/auth/login" class="nav-link">Login</a>
+                    <a href="/auth/register" class="btn btn-primary">Sign Up</a>
+                <% } %>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <%- body %>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sumit Vegetable Company</h3>
+                    <p>Fresh vegetables delivered to your doorstep</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@sumitvegetables.com</p>
+                    <p>Phone: +91 98765 43210</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Hours</h4>
+                    <p>Mon - Sat: 6 AM - 8 PM</p>
+                    <p>Sunday: 7 AM - 6 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Sumit Vegetable Company. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopkeeper Dashboard - Sumit Vegetable Company</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <span class="logo-icon">🥬</span>
+                <span class="logo-text">Sumit Vegetables</span>
+            </a>
+            <div class="nav-links">
+                <span class="user-greeting">Hello, <%= user.name %></span>
+                <a href="/shopkeeper/dashboard" class="nav-link active">Dashboard</a>
+                <a href="/auth/logout" class="btn btn-secondary">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="dashboard">
+        <div class="dashboard-container">
+            <div class="dashboard-header">
+                <div>
+                    <h1 class="dashboard-title">Shopkeeper Dashboard</h1>
+                    <p class="dashboard-subtitle">Manage your vegetables inventory</p>
+                </div>
+                <a href="/shopkeeper/add-vegetable" class="btn btn-primary">
+                    <span>➕</span> Add New Vegetable
+                </a>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #e8f5e9;">🥬</div>
+                    <div class="stat-content">
+                        <p class="stat-label">Total Products</p>
+                        <p class="stat-value"><%= vegetables.length %></p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #e3f2fd;">📦</div>
+                    <div class="stat-content">
+                        <p class="stat-label">Total Orders</p>
+                        <p class="stat-value"><%= orders.length %></p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #fff3e0;">⚠️</div>
+                    <div class="stat-content">
+                        <p class="stat-label">Low Stock Items</p>
+                        <p class="stat-value"><%= vegetables.filter(v => v.quantity < 10).length %></p>
+                    </div>
+                </div>
+            </div>
+
+            <section class="dashboard-section">
+                <h2 class="section-title">Vegetables Inventory</h2>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Category</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (vegetables.length === 0) { %>
+                                <tr>
+                                    <td colspan="7" class="empty-state">
+                                        <p>No vegetables added yet. Click "Add New Vegetable" to get started!</p>
+                                    </td>
+                                </tr>
+                            <% } else { %>
+                                <% vegetables.forEach(veg => { %>
+                                <tr>
+                                    <td>
+                                        <img src="<%= veg.image %>" alt="<%= veg.name %>" class="table-image" onerror="this.src='/uploads/default-vegetable.jpg'">
+                                    </td>
+                                    <td><strong><%= veg.name %></strong></td>
+                                    <td>₹<%= veg.price %>/<%= veg.unit %></td>
+                                    <td>
+                                        <span class="<%= veg.quantity < 10 ? 'badge badge-warning' : 'badge badge-success' %>">
+                                            <%= veg.quantity %> <%= veg.unit %>
+                                        </span>
+                                    </td>
+                                    <td><%= veg.category %></td>
+                                    <td>
+                                        <span class="<%= veg.inStock ? 'badge badge-success' : 'badge badge-error' %>">
+                                            <%= veg.inStock ? 'In Stock' : 'Out of Stock' %>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <a href="/shopkeeper/edit-vegetable/<%= veg._id %>" class="btn-icon" title="Edit">✏️</a>
+                                            <form method="POST" action="/shopkeeper/delete-vegetable/<%= veg._id %>" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this vegetable?');">
+                                                <button type="submit" class="btn-icon" title="Delete">🗑️</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="dashboard-section">
+                <h2 class="section-title">Recent Orders</h2>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Total Amount</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (orders.length === 0) { %>
+                                <tr>
+                                    <td colspan="6" class="empty-state">
+                                        <p>No orders yet</p>
+                                    </td>
+                                </tr>
+                            <% } else { %>
+                                <% orders.forEach(order => { %>
+                                <tr>
+                                    <td><strong>#<%= order._id.toString().slice(-6) %></strong></td>
+                                    <td><%= order.customer.name %></td>
+                                    <td>₹<%= order.totalAmount %></td>
+                                    <td>
+                                        <span class="badge badge-<%= order.status === 'pending' ? 'warning' : order.status === 'confirmed' ? 'info' : order.status === 'delivered' ? 'success' : 'error' %>">
+                                            <%= order.status %>
+                                        </span>
+                                    </td>
+                                    <td><%= new Date(order.orderDate).toLocaleDateString() %></td>
+                                    <td>
+                                        <form method="POST" action="/shopkeeper/update-order/<%= order._id %>" style="display: inline;">
+                                            <select name="status" onchange="this.form.submit()" class="status-select">
+                                                <option value="pending" <%= order.status === 'pending' ? 'selected' : '' %>>Pending</option>
+                                                <option value="confirmed" <%= order.status === 'confirmed' ? 'selected' : '' %>>Confirmed</option>
+                                                <option value="delivered" <%= order.status === 'delivered' ? 'selected' : '' %>>Delivered</option>
+                                                <option value="cancelled" <%= order.status === 'cancelled' ? 'selected' : '' %>>Cancelled</option>
+                                            </select>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

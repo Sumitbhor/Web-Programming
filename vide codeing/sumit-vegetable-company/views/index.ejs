@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumit Vegetable Company - Fresh Vegetables Daily</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <span class="logo-icon">🥬</span>
+                <span class="logo-text">Sumit Vegetables</span>
+            </a>
+            <div class="nav-links">
+                <% if (typeof user !== 'undefined' && user.userId) { %>
+                    <span class="user-greeting">Hello, <%= user.name %></span>
+                    <% if (user.role === 'shopkeeper') { %>
+                        <a href="/shopkeeper/dashboard" class="nav-link">Dashboard</a>
+                    <% } else if (user.role === 'customer') { %>
+                        <a href="/customer/dashboard" class="nav-link">My Account</a>
+                    <% } %>
+                    <a href="/auth/logout" class="btn btn-secondary">Logout</a>
+                <% } else { %>
+                    <a href="/auth/login" class="nav-link">Login</a>
+                    <a href="/auth/register" class="btn btn-primary">Sign Up</a>
+                <% } %>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">Farm Fresh Daily</div>
+                <h1 class="hero-title">Nature's Bounty<br>Delivered Fresh</h1>
+                <p class="hero-subtitle">Premium quality vegetables sourced directly from local farms to your kitchen</p>
+                <div class="hero-actions">
+                    <% if (!user.userId) { %>
+                        <a href="/auth/register" class="btn btn-large btn-primary">Start Shopping</a>
+                        <a href="/auth/login" class="btn btn-large btn-outline">Sign In</a>
+                    <% } else if (user.role === 'customer') { %>
+                        <a href="/customer/dashboard" class="btn btn-large btn-primary">Browse Vegetables</a>
+                    <% } else { %>
+                        <a href="/shopkeeper/dashboard" class="btn btn-large btn-primary">Go to Dashboard</a>
+                    <% } %>
+                </div>
+            </div>
+            <div class="hero-decoration"></div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🌱</div>
+                        <h3>100% Organic</h3>
+                        <p>Naturally grown vegetables without harmful chemicals</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🚚</div>
+                        <h3>Fast Delivery</h3>
+                        <p>Same day delivery for orders before 2 PM</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💚</div>
+                        <h3>Fresh Daily</h3>
+                        <p>Harvested in the morning, delivered to you</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💰</div>
+                        <h3>Best Prices</h3>
+                        <p>Direct from farm pricing with no middlemen</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <% if (vegetables && vegetables.length > 0) { %>
+        <section class="products">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Featured Vegetables</h2>
+                    <p class="section-subtitle">Handpicked fresh produce available today</p>
+                </div>
+                <div class="product-grid">
+                    <% vegetables.forEach(veg => { %>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="<%= veg.image %>" alt="<%= veg.name %>" onerror="this.src='/uploads/default-vegetable.jpg'">
+                            <% if (veg.quantity < 10) { %>
+                            <span class="badge badge-warning">Low Stock</span>
+                            <% } %>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name"><%= veg.name %></h3>
+                            <p class="product-description"><%= veg.description || 'Fresh and organic' %></p>
+                            <div class="product-footer">
+                                <span class="product-price">₹<%= veg.price %>/<%= veg.unit %></span>
+                                <span class="product-stock"><%= veg.quantity %> <%= veg.unit %> available</span>
+                            </div>
+                        </div>
+                    </div>
+                    <% }); %>
+                </div>
+            </div>
+        </section>
+        <% } %>
+
+        <section class="cta">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to enjoy fresh vegetables?</h2>
+                    <p>Join thousands of happy customers who trust Sumit Vegetables for their daily needs</p>
+                    <% if (!user.userId) { %>
+                        <a href="/auth/register" class="btn btn-large btn-white">Create Account</a>
+                    <% } %>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sumit Vegetable Company</h3>
+                    <p>Fresh vegetables delivered to your doorstep daily</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@sumitvegetables.com</p>
+                    <p>Phone: +91 98765 43210</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Hours</h4>
+                    <p>Mon - Sat: 6 AM - 8 PM</p>
+                    <p>Sunday: 7 AM - 6 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Sumit Vegetable Company. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
