@@ -308,3 +308,15 @@ footer {
   height: 300px;
   object-fit: cover;
 }
+
+.bg-light {
+  background-color: #ffe4e1 !important; /* light pink */
+}
+
+.bg-color {
+  background-color: #d1d5c7 !important; /* lavender blush */
+}
+.bg-img{
+  background: url('../image/bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+}

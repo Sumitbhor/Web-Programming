@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+  <%- include('partials/header') %>
+  <% if (typeof success === 'string' && success) { %>
+    <div class="alert alert-success alert-dismissible fade show m-3" role="alert"><%= success %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+  <% } %>
+  <% if (typeof error === 'string' && error) { %>
+    <div class="alert alert-danger alert-dismissible fade show m-3" role="alert"><%= error %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+  <% } %>
+
+  <section class="bg-color mt-5">
+    <section class="container my-5">
+      <h2 class="text-center mb-4">Explore Our Flowers Collections</h2>
+      <div class="row g-4">
+        <% if (typeof products !== 'undefined' && products.length) { %>
+          <% products.forEach((p) => { %>
+            <div class="col-md-3">
+              <div class="tabcard img-fluid rounded-4 shadow bg-white">
+                <img src="<%= p.image || '/image/rose (2).jpg' %>" class="tabimg card-img-top p-2 rounded-4" alt="<%= p.name %>">
+                <div class="card-body text-center">
+                  <h5><%= p.name %></h5>
+                  <p><%= p.description || '' %></p>
+                  <p>Rs. <%= p.price %></p>
+                  <a href="#" class="btn btn-primary"><i class="bi bi-cart-plus"></i> Add to Cart</a>
+                </div>
+              </div>
+            </div>
+          <% }); %>
+        <% } else { %>
+          <div class="col-12 text-center text-white py-5">
+            <p>No products yet. Shopkeepers can add products after logging in.</p>
+            <a href="/" class="btn btn-light">Back to Home</a>
+          </div>
+        <% } %>
+      </div>
+    </section>
+  </section>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

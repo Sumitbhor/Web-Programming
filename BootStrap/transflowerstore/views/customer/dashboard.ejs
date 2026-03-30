@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head') %>
+</head>
+<body>
+  <%- include('../partials/header') %>
+  <div class="container my-5">
+    <div class="card shadow">
+      <div class="card-header bg-danger text-white">
+        <h4 class="mb-0">My Account</h4>
+      </div>
+      <div class="card-body">
+        <p class="lead">Welcome, <%= typeof user !== 'undefined' && user ? user.name : 'Customer' %>! 🌸</p>
+        <p>You are logged in as a <strong>Customer</strong>. Browse our flowers and add them to cart from the Products page.</p>
+        <a href="/products" class="btn btn-danger">Browse Products</a>
+        <a href="/" class="btn btn-outline-secondary">Back to Home</a>
+      </div>
+    </div>
+  </div>
+  <%- include('../partials/footer') %>
+</body>
+</html>

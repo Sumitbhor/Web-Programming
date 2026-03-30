@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded-4">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="/">
+      <img src="/image/transflower logo.ico" alt="transflower logo" style="width:40px" class="rounded-pill me-2">
+      <span class="fw-bold">Transflower Store</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="/"><i class="bi bi-house-door"></i> Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/products"><i class="bi bi-basket"></i> Products</a></li>
+        <li class="nav-item"><a class="nav-link" href="/about"><i class="bi bi-info-circle"></i> About</a></li>
+        <li class="nav-item"><a class="nav-link" href="/contact"><i class="bi bi-envelope"></i> Contact</a></li>
+        <% if (typeof user !== 'undefined' && user) { %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="bi bi-person-circle"></i> <%= user.name %></a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <% if (role === 'shopkeeper') { %>
+                <li><a class="dropdown-item" href="/shopkeeper/dashboard">My Dashboard</a></li>
+                <li><a class="dropdown-item" href="/shopkeeper/add-product">Add Flower / Product</a></li>
+              <% } else { %>
+                <li><a class="dropdown-item" href="/customer/dashboard">My Account</a></li>
+              <% } %>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/logout">Logout</a></li>
+            </ul>
+          </li>
+        <% } else { %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"><i class="bi bi-box-arrow-in-right"></i> Portals</a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="/customer/login">🌸 Customer Login</a></li>
+              <li><a class="dropdown-item" href="/customer/register">Customer Register</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/shopkeeper/login">🏪 Shopkeeper Login</a></li>
+              <li><a class="dropdown-item" href="/shopkeeper/register">Shopkeeper Register</a></li>
+            </ul>
+          </li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>

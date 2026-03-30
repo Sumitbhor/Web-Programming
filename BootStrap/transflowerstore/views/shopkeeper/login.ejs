@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head') %>
+  <style>
+    .portal-shopkeeper { background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); min-height: 100vh; color: #eee; }
+    .portal-shopkeeper .card { border: none; border-radius: 16px; box-shadow: 0 15px 50px rgba(0,0,0,0.4); background: #1a1a2e; color: #eee; }
+    .portal-shopkeeper .card-header { background: linear-gradient(90deg, #0f3460, #e94560); color: #fff; border-radius: 16px 16px 0 0; padding: 1.25rem; }
+    .portal-shopkeeper .form-control { background: #16213e; border: 1px solid #0f3460; color: #fff; }
+    .portal-shopkeeper .form-control::placeholder { color: #888; }
+    .portal-shopkeeper .form-label { color: #ccc; }
+    .portal-shopkeeper .btn-login { background: linear-gradient(90deg, #e94560, #0f3460); border: none; border-radius: 25px; padding: 12px; color: #fff; }
+    .portal-shopkeeper .btn-login:hover { opacity: 0.9; color: #fff; }
+    .portal-shopkeeper a.text-portal { color: #e94560; font-weight: 600; }
+    .portal-shopkeeper .text-muted { color: #888 !important; }
+  </style>
+</head>
+<body class="portal-shopkeeper">
+  <%- include('../partials/header') %>
+  <div class="container py-5">
+    <% if (typeof error === 'string' && error) { %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert"><%= error %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+    <% } %>
+    <% if (typeof success === 'string' && success) { %>
+      <div class="alert alert-success alert-dismissible fade show" role="alert"><%= success %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+    <% } %>
+    <div class="row justify-content-center">
+      <div class="col-md-5 col-lg-4">
+        <div class="card shadow-lg">
+          <div class="card-header text-center">
+            <h4 class="mb-0">🏪 Shopkeeper Login</h4>
+            <p class="mb-0 small opacity-90">Manage your store & add flowers</p>
+          </div>
+          <div class="card-body p-4">
+            <form action="/shopkeeper/login" method="POST">
+              <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control form-control-lg" name="email" required placeholder="shop@email.com">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control form-control-lg" name="password" required placeholder="••••••••">
+              </div>
+              <button type="submit" class="btn btn-login w-100">Login</button>
+              <p class="mt-3 text-center mb-0">
+                New shopkeeper? <a href="/shopkeeper/register" class="text-portal">Register your store</a>
+              </p>
+            </form>
+          </div>
+        </div>
+        <p class="text-center mt-3">
+          <a href="/" class="text-muted"><i class="bi bi-arrow-left"></i> Back to Home</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <%- include('../partials/footer') %>
+</body>
+</html>
